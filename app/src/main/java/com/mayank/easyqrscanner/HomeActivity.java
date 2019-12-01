@@ -2,6 +2,7 @@ package com.mayank.easyqrscanner;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -11,6 +12,7 @@ import android.widget.Toast;
 
 import com.google.zxing.integration.android.IntentIntegrator;
 import com.google.zxing.integration.android.IntentResult;
+import com.shashank.sony.fancytoastlib.FancyToast;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -36,19 +38,21 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
         buttonScan.setOnClickListener(this);
     }
 
+    @SuppressLint("WrongConstant")
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         IntentResult result = IntentIntegrator.parseActivityResult(requestCode, resultCode, data);
         if (result != null) {
             if (result.getContents() == null) {
-                Toast.makeText(this, "Result Not Found", Toast.LENGTH_LONG).show();
+                FancyToast.makeText(this,"FAILED",FancyToast.LENGTH_LONG,FancyToast.ERROR,false).show();
             } else {
                 try {
                     JSONObject obj = new JSONObject(result.getContents());
                     textViewName.setText(obj.getString("name"));
                     textViewAddress.setText(obj.getString("address"));
                     textViewAge.setText(obj.getString("age"));
-                } catch (JSONException e) {
+                    FancyToast.makeText(getApplicationContext(), "SUCCESS", FancyToast.LENGTH_LONG,FancyToast.SUCCESS,false).show();
+                 } catch (JSONException e) {
                     e.printStackTrace();
                     Toast.makeText(this, result.getContents(), Toast.LENGTH_LONG).show();
                 }

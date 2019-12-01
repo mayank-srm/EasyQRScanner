@@ -32,4 +32,5 @@ dependencies {
     implementation 'com.google.zxing:core:3.3.0'
   //  implementation 'com.journeyapps:zxing-android-embedded:4.0.0'
     implementation 'com.google.android.gms:play-services-vision:19.0.0'
+    implementation 'com.github.Shashank02051997:FancyToast-Android:0.1.6'
 }
