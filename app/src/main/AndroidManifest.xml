@@ -17,7 +17,8 @@
         android:hardwareAccelerated="true"
         tools:ignore="AllowBackup,GoogleAppIndexingWarning">
         <activity
-            android:name=".HomeActivity">
+            android:name=".HomeActivity"
+            android:screenOrientation="portrait">
 
         </activity>
         <activity android:name=".LoginActivity">
